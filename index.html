@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Horizon Academy | Future-Focused Education</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary: #3a86ff;
+      --secondary: #8338ec;
+      --accent: #ff006e;
+      --dark: #1a1a2e;
+      --light: #f8f9fa;
+      --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+    body { background: var(--light); color: var(--dark); overflow-x:hidden; }
+    body::before {
+      content:""; position:fixed; top:0; left:0; width:100%; height:100%;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(58,134,255,0.1) 0%,transparent 20%),
+        radial-gradient(circle at 90% 30%, rgba(255,6,110,0.1) 0%,transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(131,56,236,0.1) 0%,transparent 30%);
+      z-index:-1; pointer-events:none;
+    }
+    header {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+      position: fixed; width:100%; z-index:1000;
+      padding:1rem 5%; display:flex; justify-content:space-between; align-items:center;
+    }
+    .logo { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.5rem; color:var(--dark); text-decoration:none; }
+    .logo-icon { color: var(--primary); font-size:1.8rem; }
+    nav { }
+    nav ul {
+      display:flex; list-style:none; gap:2rem;
+    }
+    nav a {
+      text-decoration:none; color:var(--dark); font-weight:500; position:relative; padding:0.5rem 0; transition:color 0.3s;
+    }
+    nav a::after {
+      content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background: var(--gradient); transition: width 0.3s;
+    }
+    nav a:hover { color: var(--primary); }
+    nav a:hover::after { width:100%; }
+    .cta-button {
+      background:var(--gradient); color:white; padding:0.7rem 1.5rem; border-radius:50px; font-weight:600; text-decoration:none;
+      transition: transform 0.3s, box-shadow 0.3s; box-shadow:0 4px 15px rgba(58,134,255,0.4);
+    }
+    .cta-button:hover { transform: translateY(-3px); box-shadow:0 6px 20px rgba(58,134,255,0.6); }
+    /* Hamburger */
+    .hamburger {
+      display:none; flex-direction:column; cursor:pointer; z-index: 1001;
+    }
+    .hamburger span {
+      height:3px; width:25px; background:var(--dark); margin:4px; transition:all 0.3s;
+    }
+    /* Mobile Navigation */
+    @media(max-width: 992px){
+      nav ul { 
+        display: none; 
+        flex-direction: column; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 70%;
+        height: 100vh;
+        background: white;
+        padding: 5rem 2rem 2rem;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
+      }
+      nav.active ul { 
+        display: flex; 
+        transform: translateX(0);
+      }
+      .hamburger { 
+        display: flex; 
+        position: relative;
+        z-index: 1000;
+      }
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+    }
+    @media(max-width: 576px){
+      header {
+        padding: 0.8rem 5%;
+      }
+      .logo {
+        font-size: 1.2rem;
+      }
+    }
+    .hero {
+      height:100vh; display:flex; align-items:center; padding:0 5%; position:relative; overflow:hidden;
+    }
+    .hero-content { max-width:600px; z-index:2; }
+    .hero h1 {
+      font-size:3.5rem; margin-bottom:1.5rem; background: var(--gradient); -webkit-background-clip:text;
+      background-clip:text; color:transparent; line-height:1.2;
+    }
+    .hero p { font-size:1.2rem; margin-bottom:2rem; color:#555; }
+    .hero-buttons { display:flex; gap:1rem; }
+    .secondary-button {
+      background:white; color:var(--primary); padding:0.7rem 1.5rem; border-radius:50px; font-weight:600;
+      border:2px solid var(--primary); transition:all 0.3s;
+    }
+    .secondary-button:hover { background:var(--primary); color:white; }
+    .hero-image, lottie-player {
+      position:absolute; right:5%; width:45%; max-width:700px; height:auto; border-radius:20px;
+      box-shadow:0 25px 50px -12px rgba(0,0,0,0.25); transform:perspective(1000px) rotateY(-15deg); z-index:1;
+    }
+    .floating-element, .animated-pic {
+      position:absolute; border-radius:50%; opacity:0.7; z-index:0; animation:float 8s ease-in-out infinite;
+      pointer-events:none;
+    }
+    .floating-element:nth-child(1){ width:100px;height:100px;background:var(--primary); top:20%;left:5%; }
+    .floating-element:nth-child(2){ width:150px;height:150px;background:var(--accent); bottom:15%;right:10%; animation-duration:10s; }
+    .floating-element:nth-child(3){ width:70px;height:70px;background:var(--secondary); top:60%;left:30%; animation-duration:7s; animation-delay:2s; }
+    .animated-pic { animation:floatImage 6s ease-in-out infinite; }
+    .pic1 { top:10%; left:15%; width:60px; animation-delay:0s; }
+    .pic2 { bottom:10%; left:25%; width:70px; animation-delay:2s; }
+    .pic3 { top:20%; right:20%; width:50px; animation-delay:4s; }
+    @keyframes float { 0%,100%{transform:translateY(0) rotate(0);}50%{transform:translateY(-20px) rotate(5deg);} }
+    @keyframes floatImage { 0%,100%{transform:translateY(0) rotate(0);}50%{transform:translateY(-15px) rotate(5deg);} }
+    
+    /* Mobile Hero Section */
+    @media (max-width: 992px) {
+      .hero {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding-top: 4rem;
+      }
+      .hero-content {
+        max-width: 100%;
+        padding: 0 1rem;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      lottie-player {
+        position: relative;
+        width: 80%;
+        max-width: 400px;
+        margin: 2rem auto 0;
+        right: auto;
+        transform: none;
+      }
+      .hero-buttons {
+        justify-content: center;
+      }
+      .floating-element, .animated-pic {
+        display: none;
+      }
+    }
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .cta-button, .secondary-button {
+        width: 100%;
+        text-align: center;
+      }
+    }
+    
+    .section { padding:5rem 5%; }
+    .section-title { text-align:center; margin-bottom:3rem; font-size:2.5rem; position:relative; display:inline-block; left:50%; transform:translateX(-50%); }
+    .section-title::after { content:''; position:absolute; bottom:-10px; left:0; width:100%; height:4px; background:var(--gradient); border-radius:2px; }
+    
+    @media (max-width: 768px) {
+      .section {
+        padding: 3rem 5%;
+      }
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+    }
+    
+    /* NEW PROGRAMS GRID DESIGN */
+   .programs-grid { 
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2.5rem;
+    }
+    .program-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .program-card:hover { 
+      transform: translateY(-12px) scale(1.02); 
+      box-shadow: 0 20px 45px rgba(0,0,0,0.15); 
+    }
+    .program-header {
+      background: var(--gradient);
+      color: white;
+      padding: 1.8rem;
+      text-align: center;
+      position: relative;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    }
+    .program-class {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .program-title {
+      font-size: 1.3rem;
+      opacity: 0.95;
+      font-weight: 500;
+    }
+    .program-price {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      background: var(--accent);
+      color: white;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      box-shadow: 0 8px 20px rgba(255,0,110,0.4);
+      transform: rotate(10deg);
+      transition: transform 0.3s ease;
+    }
+    .program-card:hover .program-price {
+      transform: rotate(0deg) scale(1.1);
+    }
+    .original-price {
+      text-decoration: line-through;
+      font-size: 0.75rem;
+      opacity: 0.9;
+    }
+    .current-price {
+      font-size: 1.4rem;
+    }
+    .program-content { 
+      padding: 2rem; 
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .subject-title {
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+      color: var(--dark);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+    }
+    .subject-title i {
+      margin-right: 0.7rem;
+      color: var(--primary);
+    }
+    .subject-list {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+    .subject-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px dashed #eee;
+      transition: background-color 0.2s;
+    }
+    .subject-list li:hover {
+      background-color: #f9f9f9;
+    }
+    .subject-list li:last-child {
+      border-bottom: none;
+    }
+    .optional-classes {
+      background: linear-gradient(to right, #f8f9fa, #f1f3f5);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: auto;
+      border-left: 4px solid var(--primary);
+    }
+    .optional-title {
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+    .optional-title i {
+      margin-right: 0.7rem;
+    }
+    .optional-list {
+      list-style: none;
+    }
+    .optional-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+    .program-footer {
+      padding: 1.5rem;
+      background: #f8f9fa;
+      text-align: center;
+      border-top: 1px solid #eee;
+    }
+    .program-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient);
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(58,134,255,0.3);
+      width: 100%;
+    }
+    .program-link i {
+      margin-left: 0.7rem;
+      transition: transform 0.3s;
+    }
+    .program-link:hover { 
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(58,134,255,0.4);
+    }
+    .program-link:hover i { 
+      transform: translateX(5px); 
+    }
+    
+    /* Mobile Programs Section */
+    @media (max-width: 768px) {
+      .programs-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .program-card {
+        margin: 0 auto;
+        max-width: 400px;
+      }
+      .program-header {
+        padding: 1.5rem;
+      }
+      .program-class {
+        font-size: 1.8rem;
+      }
+      .program-title {
+        font-size: 1.1rem;
+      }
+      .program-price {
+        width: 70px;
+        height: 70px;
+        top: -15px;
+        right: -15px;
+      }
+      .current-price {
+        font-size: 1.2rem;
+      }
+      .program-content {
+        padding: 1.5rem;
+      }
+    }
+    @media (max-width: 400px) {
+      .program-card {
+        border-radius: 15px;
+      }
+      .program-header {
+        padding: 1.2rem;
+      }
+      .program-class {
+        font-size: 1.6rem;
+      }
+      .subject-list li {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      .optional-list li {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+    }
+    
+    .features { background:var(--gradient); color:white; padding:5rem 5%; position:relative; overflow:hidden; }
+    .features::before{ content:''; position:absolute; top:0; left:0; width:100%; height:100%;
+      background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
+      background-size:100% auto; background-repeat:no-repeat; background-position:bottom; }
+    .features .section-title{ color:white; }
+    .features .section-title::after{ background:white; }
+    .features-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; position:relative; z-index:2; }
+    .feature-card{ background:rgba(255,255,255,0.1); backdrop-filter:blur(10px); padding:2rem; border-radius:15px; text-align:center; transition:transform 0.3s; border:1px solid rgba(255,255,255,0.2); }
+    .feature-card:hover{ transform:translateY(-10px); background:rgba(255,255,255,0.15); }
+    .feature-icon{ font-size:3rem; margin-bottom:1.5rem; background:linear-gradient(135deg,#ffffff,#e0e0e0); -webkit-background-clip:text; background-clip:text; color:transparent; display:inline-block; }
+    .feature-title{ font-size:1.3rem; margin-bottom:1rem; } .feature-description{ opacity:0.9; font-size:0.95rem; }
+    
+    /* Mobile Features Section */
+    @media (max-width: 768px) {
+      .features {
+        padding: 3rem 5%;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .feature-card {
+        padding: 1.5rem;
+      }
+      .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      .feature-title {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* Footer */
+ footer {
+  background: var(--dark);
+  color: white;
+  padding: 3rem 5%;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 1rem;
+}
+
+.footer-about p {
+  opacity: 0.85;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.social-links {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  font-size: 18px;
+}
+
+.social-link.facebook:hover { background: #1877F2; }
+.social-link.instagram:hover { background: linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4); }
+.social-link.email:hover { background: #D44638; }
+
+.contact-info p {
+  font-size: 0.95rem;
+  margin: 0.4rem 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.contact-info i {
+  margin-right: 8px;
+  color: var(--primary);
+}
+
+.footer-links h3 {
+  margin-bottom: 1.2rem;
+  font-size: 1.2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.footer-links h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+/* Mobile Footer */
+@media (max-width: 768px) {
+  footer {
+    padding: 2rem 5%;
+  }
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  .footer-logo {
+    justify-content: center;
+  }
+  .social-links {
+    justify-content: center;
+  }
+  .footer-links h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <a href class="logo"><i class="fas fa-graduation-cap logo-icon"></i>Gyanova Academy</a>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#features">Why Us</a></li>
+    
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+      <h1>Redefining Education for the Future</h1>
+      <p>At Gyanova Academy, we combine innovative teaching methods with cutting-edge technology to prepare students for tomorrow's challenges.</p>
+      <div class="hero-buttons">
+        <a href="#programs" class="cta-button">Explore Programs</a>
+      </div>
+    </div>
+    <!-- Lottie hero animation as background -->
+    <lottie-player src="https://assets.lottiefiles.com/packages/lf20_jcikwtux.json"
+      background="transparent" speed="1" loop autoplay></lottie-player>
+    <!-- Floating shape decorations -->
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <!-- Animated icon pics -->
+    <img src="https://cdn-icons-png.flaticon.com/512/906/906175.png" alt="Atom" class="animated-pic pic1">
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Student" class="animated-pic pic2">
+    <img src="https://cdn-icons-png.flaticon.com/512/3081/3081648.png" alt="Laptop" class="animated-pic pic3">
+  </section>
+
+  <!-- Programs with AOS -->
+  <section class="section" id="programs">
+    <h2 class="section-title" data-aos="fade-up">Our Programs</h2>
+    <div class="programs-grid">
+      <!-- Class 5 -->
+      <div class="program-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="program-header">
+          <div class="program-class">Class 5</div>
+          <div class="program-title">Primary Education</div>
+          <div class="program-price">
+            <span class="original-price">1000/-</span>
+            <span class="current-price">799/-</span>
+          </div>
+        </div>
+        <div class="program-content">
+          <ul class="subject-list">
+            <li><span>Bengali</span><span>250/-</span></li>
+            <li><span>English</span><span>250/-</span></li>
+            <li><span>Math</span><span>250/-</span></li>
+            <li><span>Science</span><span>250/-</span></li>
+            <li><span>Computer</span><span>Free</span></li>
+          </ul>
+          <div class="optional-classes">
+            <div class="optional-title">Optional Classes (Additional):</div>
+            <ul class="optional-list">
+              <li><span>Special Math Class</span><span>75/- per class</span></li>
+              <li><span>Basic Computer Class</span><span>75/- per class</span></li>
+              <li><span>General Awareness Class</span><span>75/- per class</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="program-footer">
+          <a href="#" class="program-link">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- Class 6 -->
+      <div class="program-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="program-header">
+          <div class="program-class">Class 6</div>
+          <div class="program-title">Middle School Program</div>
+          <div class="program-price">
+            <span class="original-price">1500/-</span>
+            <span class="current-price">1299/-</span>
+          </div>
+        </div>
+        <div class="program-content">
+          <ul class="subject-list">
+            <li><span>Bengali</span><span>250/-</span></li>
+            <li><span>English</span><span>250/-</span></li>
+            <li><span>Math</span><span>250/-</span></li>
+            <li><span>Science</span><span>250/-</span></li>
+            <li><span>History</span><span>250/-</span></li>
+            <li><span>Geography</span><span>250/-</span></li>
+            <li><span>Computer</span><span>Free</span></li>
+          </ul>
+          <div class="optional-classes">
+            <div class="optional-title">Optional Classes (Additional):</div>
+            <ul class="optional-list">
+              <li><span>Special Math Class</span><span>75/- per class</span></li>
+              <li><span>Basic Computer Class</span><span>75/- per class</span></li>
+              <li><span>General Awareness Class</span><span>75/- per class</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="program-footer">
+          <a href="#" class="program-link">Contact Us </a>
+        </div>
+      </div>
+
+      <!-- Class 7 -->
+      <div class="program-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="program-header">
+          <div class="program-class">Class 7</div>
+          <div class="program-title">Advanced Middle School</div>
+          <div class="program-price">
+            <span class="original-price">1750/-</span>
+            <span class="current-price">1499/-</span>
+          </div>
+        </div>
+        <div class="program-content">
+          <ul class="subject-list">
+            <li><span>Bengali</span><span>250/-</span></li>
+            <li><span>English</span><span>250/-</span></li>
+            <li><span>Math</span><span>250/-</span></li>
+            <li><span>Science</span><span>250/-</span></li>
+            <li><span>History</span><span>250/-</span></li>
+            <li><span>Geography</span><span>250/-</span></li>
+            <li><span>Hindi/Sanskrit</span><span>250/-</span></li>
+            <li><span>Computer</span><span>Free</span></li>
+          </ul>
+          <div class="optional-classes">
+            <div class="optional-title">Optional Classes (Additional):</div>
+            <ul class="optional-list">
+              <li><span>Special Math Class</span><span>75/- per class</span></li>
+              <li><span>Basic Computer Class</span><span>75/- per class</span></li>
+              <li><span>General Awareness Class</span><span>75/- per class</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="program-footer">
+          <a href="#" class="program-link">Contact Us </a>
+        </div>
+      </div>
+
+      <!-- Class 8 -->
+      <div class="program-card" data-aos="fade-up" data-aos-delay="250">
+        <div class="program-header">
+          <div class="program-class">Class 8</div>
+          <div class="program-title">Pre-High School Program</div>
+          <div class="program-price">
+            <span class="original-price">2000/-</span>
+            <span class="current-price">1799/-</span>
+          </div>
+        </div>
+        <div class="program-content">
+          <ul class="subject-list">
+            <li><span>Bengali</span><span>250/-</span></li>
+            <li><span>English</span><span>250/-</span></li>
+            <li><span>Math</span><span>300/-</span></li>
+            <li><span>Science</span><span>250/-</span></li>
+            <li><span>History</span><span>250/-</span></li>
+            <li><span>Geography</span><span>250/-</span></li>
+            <li><span>Hindi/Sanskrit</span><span>250/-</span></li>
+            <li><span>Computer</span><span>200/-</span></li>
+          </ul>
+          <div class="optional-classes">
+            <div class="optional-title">Optional Classes (Additional):</div>
+            <ul class="optional-list">
+              <li><span>Special Math Class</span><span>75/- per class</span></li>
+              <li><span>Basic Computer Class</span><span>75/- per class</span></li>
+              <li><span>General Awareness Class</span><span>75/- per class</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="program-footer">
+          <a href="#" class="program-link">Contact Us </a>
+        </div>
+      </div>
+
+      <!-- Class 9 -->
+      <div class="program-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="program-header">
+          <div class="program-class">Class 9</div>
+          <div class="program-title">High School Program</div>
+          <div class="program-price">
+            <span class="original-price">2000/-</span>
+            <span class="current-price">1799/-</span>
+          </div>
+        </div>
+        <div class="program-content">
+          <ul class="subject-list">
+            <li><span>Bengali</span><span>250/-</span></li>
+            <li><span>English</span><span>250/-</span></li>
+            <li><span>Math</span><span>300/-</span></li>
+            <li><span>Physical Science</span><span>250/-</span></li>
+            <li><span>Life Science</span><span>250/-</span></li>
+            <li><span>History</span><span>250/-</span></li>
+            <li><span>Geography</span><span>250/-</span></li>
+            <li><span>Computer</span><span>200/-</span></li>
+          </ul>
+          <div class="optional-classes">
+            <div class="optional-title">Optional Classes (Additional):</div>
+            <ul class="optional-list">
+              <li><span>Special Math Class</span><span>75/- per class</span></li>
+              <li><span>Basic Computer Class</span><span>75/- per class</span></li>
+              <li><span>General Awareness Class</span><span>75/- per class</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="program-footer">
+          <a href="#" class="program-link">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- Class 10 -->
+      <div class="program-card" data-aos="fade-up" data-aos-delay="350">
+        <div class="program-header">
+          <div class="program-class">Class 10</div>
+          <div class="program-title">Board Preparation Program</div>
+          <div class="program-price">
+            <span class="original-price">2250/-</span>
+            <span class="current-price">2000/-</span>
+          </div>
+        </div>
+        <div class="program-content">
+          <ul class="subject-list">
+            <li><span>Bengali</span><span>300/-</span></li>
+            <li><span>English</span><span>300/-</span></li>
+            <li><span>Math</span><span>350/-</span></li>
+            <li><span>Physical Science</span><span>350/-</span></li>
+	    <li><span>Life Science</span><span>350/-</span></li>
+            <li><span>History</span><span>300/-</span></li>
+            <li><span>Geography</span><span>300/-</span></li>
+            
+          </ul>
+        </div>
+	<div class="optional-classes">
+            <div class="optional-title">Optional Classes (Additional):</div>
+            <ul class="optional-list">
+              <li><span>Special Math Class</span><span>75/- per class</span></li>
+              <li><span>Basic Computer Class</span><span>75/- per class</span></li>
+              <li><span>General Awareness Class</span><span>75/- per class</span></li>
+            </ul>
+          </div>
+        <div class="program-footer">
+          <a href="#" class="program-link">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features section -->
+  <section class="features" id="features">
+    <h2 class="section-title" data-aos="fade-down">Why Choose Gyanova</h2>
+    <div class="features-grid">
+      <div class="feature-card" data-aos="flip-left">
+        <div class="feature-icon"><i class="fas fa-atom"></i></div>
+        <h3 class="feature-title">Experienced Teachers</h3>
+        <p class="feature-description">Learn from professionals who have real-world knowledge and love to guide students.</p>
+      </div>
+      <div class="feature-card" data-aos="flip-left" data-aos-delay="100">
+        <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
+        <h3 class="feature-title">Monthly Chapter Tests</h3>
+        <p class="feature-description">Regular tests after every chapter to track progress and build confidence step by step.</p>
+      </div>
+      <div class="feature-card" data-aos="flip-left" data-aos-delay="200">
+        <div class="feature-icon"><i class="fas fa-briefcase"></i></div>
+        <h3 class="feature-title">Career Guidance</h3>
+        <p class="feature-description">We help you discover your strengths, choose the right course or stream, and plan for your future goals.</p>
+      </div>
+      <div class="feature-card" data-aos="flip-left" data-aos-delay="300">
+        <div class="feature-icon"><i class="fas fa-globe"></i></div>
+        <h3 class="feature-title">Special Guidance</h3>
+        <p class="feature-description">Get extra help with a private tutor (available on request, paid) for one-to-one learning and personal support.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-about">
+        <a href="#" class="footer-logo"><i class="fas fa-graduation-cap logo-icon"></i>Gyanova Academy</a>
+        <p>Empowering students with knowledge, skills, and values to succeed in an ever-changing world.</p>
+        <div class="social-links">
+          <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#features">Why Choose Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i> 123 Education Street, Kolkata, India</p>
+          <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+          <p><i class="fas fa-envelope"></i> info@gyanovaacademy.com</p>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2023 Gyanova Academy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100
+    });
+
+    // Mobile Navigation Toggle
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.querySelector('nav');
+    
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      nav.classList.toggle('active');
+    });
+
+    // Close mobile nav when clicking on a link
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        nav.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
