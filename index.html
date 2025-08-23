@@ -447,86 +447,55 @@
     }
 
     /* Footer */
- footer {
-  background: var(--dark);
-  color: white;
-  padding: 3rem 5%;
+footer {
+  background: #222;
+  color: #fff;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
 }
 
 .footer-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2.5rem;
-  margin-bottom: 2rem;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .footer-logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: white;
-  text-decoration: none;
-  margin-bottom: 1rem;
+  gap: 8px;
 }
 
 .footer-about p {
-  opacity: 0.85;
-  margin-bottom: 1rem;
+  margin: 15px 0;
   line-height: 1.6;
 }
 
 .social-links {
   display: flex;
-  gap: 0.8rem;
-  margin-bottom: 1rem;
+  gap: 15px;
 }
 
 .social-link {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  background: rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  color: #fff;
   font-size: 18px;
+  transition: 0.3s;
 }
 
-.social-link.facebook:hover { background: #1877F2; }
-.social-link.instagram:hover { background: linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4); }
-.social-link.email:hover { background: #D44638; }
-
-.contact-info p {
-  font-size: 0.95rem;
-  margin: 0.4rem 0;
-  color: rgba(255, 255, 255, 0.9);
+.social-link:hover {
+  color: #f39c12;
 }
 
-.contact-info i {
-  margin-right: 8px;
-  color: var(--primary);
-}
-
-.footer-links h3 {
-  margin-bottom: 1.2rem;
-  font-size: 1.2rem;
-  position: relative;
-  padding-bottom: 0.5rem;
-}
-
-.footer-links h3::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 40px;
-  height: 3px;
-  background: var(--primary);
-  border-radius: 2px;
+.footer-links h3,
+.footer-contact h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
 }
 
 .footer-links ul {
@@ -534,26 +503,43 @@
   padding: 0;
 }
 
-.footer-links li {
-  margin-bottom: 0.8rem;
+.footer-links ul li {
+  margin: 8px 0;
 }
 
-.footer-links a {
-  color: rgba(255, 255, 255, 0.8);
+.footer-links ul li a {
+  color: #bbb;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: 0.3s;
 }
 
-.footer-links a:hover {
-  color: var(--primary);
+.footer-links ul li a:hover {
+  color: #f39c12;
+}
+
+.contact-info p {
+  margin: 8px 0;
+}
+
+.contact-info i {
+  margin-right: 8px;
+  color: #f39c12;
 }
 
 .copyright {
   text-align: center;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  opacity: 0.7;
-  font-size: 0.9rem;
+  margin-top: 20px;
+  font-size: 14px;
+  border-top: 1px solid #444;
+  padding-top: 15px;
+}
+
+/* Desktop Layout */
+@media (min-width: 768px) {
+  .footer-container {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+  }
 }
 
 /* Mobile Footer */
@@ -626,16 +612,16 @@
           <div class="program-class">Class 5</div>
           <div class="program-title">Primary Education</div>
           <div class="program-price">
-            <span class="original-price">1000/-</span>
-            <span class="current-price">799/-</span>
+            <span class="original-price">800/-</span>
+            <span class="current-price">699/-</span>
           </div>
         </div>
         <div class="program-content">
           <ul class="subject-list">
-            <li><span>Bengali</span><span>250/-</span></li>
-            <li><span>English</span><span>250/-</span></li>
-            <li><span>Math</span><span>250/-</span></li>
-            <li><span>Science</span><span>250/-</span></li>
+            <li><span>Bengali</span><span>200/-</span></li>
+            <li><span>English</span><span>200/-</span></li>
+            <li><span>Math</span><span>200/-</span></li>
+            <li><span>Science</span><span>200/-</span></li>
             <li><span>Computer</span><span>Free</span></li>
           </ul>
           <div class="optional-classes">
@@ -643,7 +629,7 @@
             <ul class="optional-list">
               <li><span>Special Math Class</span><span>75/- per class</span></li>
               <li><span>Basic Computer Class</span><span>75/- per class</span></li>
-              <li><span>General Studies Class</span><span>75/- per class</span></li>
+              <li><span>Basic English Class</span><span>75/- per class</span></li>
             </ul>
           </div>
         </div>
@@ -658,18 +644,18 @@
           <div class="program-class">Class 6</div>
           <div class="program-title">Middle School Program</div>
           <div class="program-price">
-            <span class="original-price">1500/-</span>
-            <span class="current-price">1299/-</span>
+            <span class="original-price">1200/-</span>
+            <span class="current-price">799/-</span>
           </div>
         </div>
         <div class="program-content">
           <ul class="subject-list">
-            <li><span>Bengali</span><span>250/-</span></li>
-            <li><span>English</span><span>250/-</span></li>
-            <li><span>Math</span><span>250/-</span></li>
-            <li><span>Science</span><span>250/-</span></li>
-            <li><span>History</span><span>250/-</span></li>
-            <li><span>Geography</span><span>250/-</span></li>
+            <li><span>Bengali</span><span>200/-</span></li>
+            <li><span>English</span><span>200/-</span></li>
+            <li><span>Math</span><span>200/-</span></li>
+            <li><span>Science</span><span>200/-</span></li>
+            <li><span>History</span><span>200/-</span></li>
+            <li><span>Geography</span><span>200/-</span></li>
             <li><span>Computer</span><span>Free</span></li>
           </ul>
           <div class="optional-classes">
@@ -677,7 +663,7 @@
             <ul class="optional-list">
               <li><span>Special Math Class</span><span>75/- per class</span></li>
               <li><span>Basic Computer Class</span><span>75/- per class</span></li>
-              <li><span>General Studies Class</span><span>75/- per class</span></li>
+              <li><span>Basic English Class</span><span>75/- per class</span></li>
             </ul>
           </div>
         </div>
@@ -692,19 +678,19 @@
           <div class="program-class">Class 7</div>
           <div class="program-title">Advanced Middle School</div>
           <div class="program-price">
-            <span class="original-price">1750/-</span>
-            <span class="current-price">1499/-</span>
+            <span class="original-price">1500/-</span>
+            <span class="current-price">850/-</span>
           </div>
         </div>
         <div class="program-content">
           <ul class="subject-list">
-            <li><span>Bengali</span><span>250/-</span></li>
-            <li><span>English</span><span>250/-</span></li>
+            <li><span>Bengali</span><span>200/-</span></li>
+            <li><span>English</span><span>200/-</span></li>
             <li><span>Math</span><span>250/-</span></li>
             <li><span>Science</span><span>250/-</span></li>
-            <li><span>History</span><span>250/-</span></li>
-            <li><span>Geography</span><span>250/-</span></li>
-            <li><span>Hindi/Sanskrit</span><span>250/-</span></li>
+            <li><span>History</span><span>200/-</span></li>
+            <li><span>Geography</span><span>200/-</span></li>
+            <li><span>Hindi/Sanskrit</span><span>150/-</span></li>
             <li><span>Computer</span><span>Free</span></li>
           </ul>
           <div class="optional-classes">
@@ -712,7 +698,7 @@
             <ul class="optional-list">
               <li><span>Special Math Class</span><span>75/- per class</span></li>
               <li><span>Basic Computer Class</span><span>75/- per class</span></li>
-              <li><span>General Studies Class</span><span>75/- per class</span></li>
+              <li><span>Basic English Class</span><span>75/- per class</span></li>
             </ul>
           </div>
         </div>
@@ -727,27 +713,27 @@
           <div class="program-class">Class 8</div>
           <div class="program-title">Pre-High School Program</div>
           <div class="program-price">
-            <span class="original-price">2000/-</span>
-            <span class="current-price">1799/-</span>
+            <span class="original-price">1450/-</span>
+            <span class="current-price">999/-</span>
           </div>
         </div>
         <div class="program-content">
           <ul class="subject-list">
-            <li><span>Bengali</span><span>250/-</span></li>
-            <li><span>English</span><span>250/-</span></li>
-            <li><span>Math</span><span>300/-</span></li>
+            <li><span>Bengali</span><span>200/-</span></li>
+            <li><span>English</span><span>200/-</span></li>
+            <li><span>Math</span><span>250/-</span></li>
             <li><span>Science</span><span>250/-</span></li>
-            <li><span>History</span><span>250/-</span></li>
-            <li><span>Geography</span><span>250/-</span></li>
-            <li><span>Hindi/Sanskrit</span><span>250/-</span></li>
-            <li><span>Computer</span><span>200/-</span></li>
+            <li><span>History</span><span>200/-</span></li>
+            <li><span>Geography</span><span>200/-</span></li>
+            <li><span>Hindi/Sanskrit</span><span>150/-</span></li>
+            <li><span>Computer</span><span>Free</span></li>
           </ul>
           <div class="optional-classes">
             <div class="optional-title">Optional Classes (Additional):</div>
             <ul class="optional-list">
               <li><span>Special Math Class</span><span>75/- per class</span></li>
               <li><span>Basic Computer Class</span><span>75/- per class</span></li>
-              <li><span>General Studies Class</span><span>75/- per class</span></li>
+              <li><span>Basic English Class</span><span>75/- per class</span></li>
             </ul>
           </div>
         </div>
@@ -762,8 +748,8 @@
           <div class="program-class">Class 9</div>
           <div class="program-title">High School Program</div>
           <div class="program-price">
-            <span class="original-price">2000/-</span>
-            <span class="current-price">1799/-</span>
+            <span class="original-price">1750/-</span>
+            <span class="current-price">1399/-</span>
           </div>
         </div>
         <div class="program-content">
@@ -771,18 +757,17 @@
             <li><span>Bengali</span><span>250/-</span></li>
             <li><span>English</span><span>250/-</span></li>
             <li><span>Math</span><span>300/-</span></li>
-            <li><span>Physical Science</span><span>250/-</span></li>
+            <li><span>Physical Science</span><span>300/-</span></li>
             <li><span>Life Science</span><span>250/-</span></li>
             <li><span>History</span><span>250/-</span></li>
             <li><span>Geography</span><span>250/-</span></li>
-            <li><span>Computer</span><span>200/-</span></li>
           </ul>
           <div class="optional-classes">
             <div class="optional-title">Optional Classes (Additional):</div>
             <ul class="optional-list">
               <li><span>Special Math Class</span><span>75/- per class</span></li>
               <li><span>Basic Computer Class</span><span>75/- per class</span></li>
-              <li><span>General Studies Class</span><span>75/- per class</span></li>
+              <li><span>Spl Grammer Class</span><span>75/- per class</span></li>
             </ul>
           </div>
         </div>
@@ -797,19 +782,19 @@
           <div class="program-class">Class 10</div>
           <div class="program-title">Board Preparation Program</div>
           <div class="program-price">
-            <span class="original-price">2250/-</span>
-            <span class="current-price">2000/-</span>
+            <span class="original-price">1750/-</span>
+            <span class="current-price">1399/-</span>
           </div>
         </div>
         <div class="program-content">
           <ul class="subject-list">
-            <li><span>Bengali</span><span>300/-</span></li>
-            <li><span>English</span><span>300/-</span></li>
-            <li><span>Math</span><span>350/-</span></li>
-            <li><span>Physical Science</span><span>350/-</span></li>
-	    <li><span>Life Science</span><span>350/-</span></li>
-            <li><span>History</span><span>300/-</span></li>
-            <li><span>Geography</span><span>300/-</span></li>
+            <li><span>Bengali</span><span>250/-</span></li>
+            <li><span>English</span><span>250/-</span></li>
+            <li><span>Math</span><span>300/-</span></li>
+            <li><span>Physical Science</span><span>300/-</span></li>
+	    <li><span>Life Science</span><span>300/-</span></li>
+            <li><span>History</span><span>250/-</span></li>
+            <li><span>Geography</span><span>250/-</span></li>
             
           </ul>
         </div>
@@ -818,7 +803,7 @@
             <ul class="optional-list">
               <li><span>Special Math Class</span><span>75/- per class</span></li>
               <li><span>Basic Computer Class</span><span>75/- per class</span></li>
-              <li><span>General Studies Class</span><span>75/- per class</span></li>
+              <li><span>Spl Grammer Class</span><span>75/- per class</span></li>
             </ul>
           </div>
         <div class="program-footer">
@@ -856,40 +841,47 @@
   </section>
 
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-about">
-        <a href="#" class="footer-logo"><i class="fas fa-graduation-cap logo-icon"></i>Gyanova Academy</a>
-        <p>Empowering students with knowledge, skills, and values to succeed in an ever-changing world.</p>
-        <div class="social-links">
-          <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-link email"><i class="fas fa-envelope"></i></a>
-        </div>
-      </div>
-      <div class="footer-links">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#programs">Programs</a></li>
-          <li><a href="#features">Why Us</a></li>
-        </ul>
-      </div>
-      <div class="footer-contact">
-        <h3>Contact Us</h3>
-        <div class="contact-info">
-          <p><i class="fas fa-map-marker-alt"></i> 123 Education Street, Kolkata, India</p>
-          <p><i class="fas fa-phone"></i> +91 91636 21264</p>
-          <p><i class="fas fa-phone"></i> +91 62894 75969</p>
-          <p><i class="fas fa-envelope"></i> info@gyanovaacademy.com</p>
-        </div>
+ <!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <!-- About -->
+    <div class="footer-about">
+      <a href="#" class="footer-logo"><i class="fas fa-graduation-cap logo-icon"></i> Gyanova Academy</a>
+      <p>Empowering students with knowledge, skills, and values to succeed in an ever-changing world.</p>
+      <div class="social-links">
+        <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="tel:+919433912408" class="social-link call"><i class="fas fa-phone"></i></a>
+        <a href="mailto:gyanova07@gmail.com" class="social-link email"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
-    <div class="copyright">
-      <p>&copy; 2020 Gyanova Academy. All rights reserved.</p>
+
+    <!-- Quick Links -->
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#features">Why Us</a></li>
+      </ul>
     </div>
-  </footer>
+
+    <!-- Contact -->
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <div class="contact-info">
+        <p><i class="fas fa-map-marker-alt"></i> Baikuntha Deb Rd, Harish Nagar, Madhyamgram</p>
+        <p><i class="fas fa-phone"></i> +91 91636 21264</p>
+        <p><i class="fas fa-phone"></i> +91 62894 75969</p>
+        <p><i class="fas fa-envelope"></i> gyanova07@gmail.com</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="copyright">
+    <p>&copy; 2020 Gyanova Academy. All rights reserved.</p>
+  </div>
+</footer>
 
   <script>
     // Initialize AOS
