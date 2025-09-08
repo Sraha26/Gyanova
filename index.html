@@ -369,9 +369,11 @@
         gap: 2rem;
       }
       .program-card {
-        min-height: 450px; /* Added min-height for consistent box sizes */
+        min-height: 480px; /* Increased min-height for consistent box sizes */
         margin: 0 auto;
         max-width: 400px;
+        display: flex; /* Ensure flex behavior for consistent height */
+        flex-direction: column; /* Ensure flex behavior for consistent height */
       }
       .program-header {
         padding: 1.5rem;
