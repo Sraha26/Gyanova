@@ -18,7 +18,7 @@
       --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
     }
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
-    html { scroll-behavior: smooth; } /* Added smooth scroll */
+    html { scroll-behavior: smooth; }
     body { background: var(--light); color: var(--dark); overflow-x:hidden; }
     body::before {
       content:""; position:fixed; top:0; left:0; width:100%; height:100%;
@@ -54,18 +54,16 @@
       transition: transform 0.3s, box-shadow 0.3s; box-shadow:0 4px 15px rgba(58,134,255,0.4);
     }
     .cta-button:hover { transform: translateY(-3px); box-shadow:0 6px 20px rgba(58,134,255,0.6); }
-    /* Hamburger */
     .hamburger {
       display:none; flex-direction:column; cursor:pointer; z-index: 1001;
     }
     .hamburger span {
       height:3px; width:25px; background:var(--dark); margin:4px; transition:all 0.3s;
     }
-    /* Mobile Navigation */
     @media(max-width: 992px){
-      nav ul { 
-        display: none; 
-        flex-direction: column; 
+      nav ul {
+        display: none;
+        flex-direction: column;
         position: fixed;
         top: 0;
         left: 0;
@@ -78,12 +76,12 @@
         transition: transform 0.3s ease-in-out;
         z-index: 999;
       }
-      nav.active ul { 
-        display: flex; 
+      nav.active ul {
+        display: flex;
         transform: translateX(0);
       }
-      .hamburger { 
-        display: flex; 
+      .hamburger {
+        display: flex;
         position: relative;
         z-index: 1000;
       }
@@ -137,8 +135,7 @@
     .pic3 { top:20%; right:20%; width:50px; animation-delay:4s; }
     @keyframes float { 0%,100%{transform:translateY(0) rotate(0);}50%{transform:translateY(-20px) rotate(5deg);} }
     @keyframes floatImage { 0%,100%{transform:translateY(0) rotate(0);}50%{transform:translateY(-15px) rotate(5deg);} }
-    
-    /* Mobile Hero Section */
+
     @media (max-width: 992px) {
       .hero {
         flex-direction: column;
@@ -184,11 +181,11 @@
         text-align: center;
       }
     }
-    
+
     .section { padding:5rem 5%; }
     .section-title { text-align:center; margin-bottom:3rem; font-size:2.5rem; position:relative; display:inline-block; left:50%; transform:translateX(-50%); }
     .section-title::after { content:''; position:absolute; bottom:-10px; left:0; width:100%; height:4px; background:var(--gradient); border-radius:2px; }
-    
+
     @media (max-width: 768px) {
       .section {
         padding: 3rem 5%;
@@ -198,9 +195,8 @@
         margin-bottom: 2rem;
       }
     }
-    
-    /* NEW PROGRAMS GRID DESIGN */
-   .programs-grid { 
+
+   .programs-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       gap: 2.5rem;
@@ -216,9 +212,9 @@
       display: flex;
       flex-direction: column;
     }
-    .program-card:hover { 
-      transform: translateY(-12px) scale(1.02); 
-      box-shadow: 0 20px 45px rgba(0,0,0,0.15); 
+    .program-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.15);
     }
     .program-header {
       background: var(--gradient);
@@ -268,8 +264,8 @@
     .current-price {
       font-size: 1.4rem;
     }
-    .program-content { 
-      padding: 2rem; 
+    .program-content {
+      padding: 2rem;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
@@ -354,26 +350,25 @@
       margin-left: 0.7rem;
       transition: transform 0.3s;
     }
-    .program-link:hover { 
+    .program-link:hover {
       transform: translateY(-3px);
       box-shadow: 0 6px 20px rgba(58,134,255,0.4);
     }
-    .program-link:hover i { 
-      transform: translateX(5px); 
+    .program-link:hover i {
+      transform: translateX(5px);
     }
-    
-    /* Mobile Programs Section */
+
     @media (max-width: 768px) {
       .programs-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
       }
       .program-card {
-        min-height: 480px; /* Increased min-height for consistent box sizes */
+        min-height: 480px;
         margin: 0 auto;
         max-width: 400px;
-        display: flex; /* Ensure flex behavior for consistent height */
-        flex-direction: column; /* Ensure flex behavior for consistent height */
+        display: flex;
+        flex-direction: column;
       }
       .program-header {
         padding: 1.5rem;
@@ -416,7 +411,7 @@
         gap: 0.3rem;
       }
     }
-    
+
     .features { background:var(--gradient); color:white; padding:5rem 5%; position:relative; overflow:hidden; }
     .features::before{ content:''; position:absolute; top:0; left:0; width:100%; height:100%;
       background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
@@ -428,8 +423,7 @@
     .feature-card:hover{ transform:translateY(-10px); background:rgba(255,255,255,0.15); }
     .feature-icon{ font-size:3rem; margin-bottom:1.5rem; background:linear-gradient(135deg,#ffffff,#e0e0e0); -webkit-background-clip:text; background-clip:text; color:transparent; display:inline-block; }
     .feature-title{ font-size:1.3rem; margin-bottom:1rem; } .feature-description{ opacity:0.9; font-size:0.95rem; }
-    
-    /* Mobile Features Section */
+
     @media (max-width: 768px) {
       .features {
         padding: 3rem 5%;
@@ -449,8 +443,7 @@
         font-size: 1.2rem;
       }
     }
-
-    /* Footer */
+ /* Footer */
 footer {
   background: #222;
   color: #fff;
@@ -886,8 +879,7 @@ footer {
     </div>
   </section>
 
-
- <footer>
+<footer>
   <div class="footer-container">
     <div class="footer-about">
       <a href="#" class="footer-logo"><i class="fas fa-graduation-cap logo-icon"></i> Gyanova Academy</a>
@@ -898,7 +890,6 @@ footer {
         <a href="mailto:gyanova07@gmail.com" class="social-link email"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
-
     <div class="footer-links">
       <h3>Quick Links</h3>
       <ul>
@@ -907,7 +898,6 @@ footer {
         <li><a href="#features">Why Us</a></li>
       </ul>
     </div>
-
     <div class="footer-contact">
       <h3>Contact Us</h3>
       <div class="contact-info">
@@ -918,42 +908,33 @@ footer {
       </div>
     </div>
   </div>
-
   <div class="copyright">
     <p>&copy; 2020 Gyanova Academy. All rights reserved.</p>
   </div>
 </footer>
 
   <script>
-    // Initialize AOS
     AOS.init({
       duration: 800,
       once: true,
       offset: 100
     });
-
-    // Mobile Navigation Toggle
     const hamburger = document.getElementById('hamburger');
     const nav = document.querySelector('nav');
-    
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('active');
       nav.classList.toggle('active');
     });
-
-    // Smooth scroll for navigation links
     document.querySelectorAll('nav a[href^="#"]').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
-        
         if (targetElement) {
           window.scrollTo({
             top: targetElement.offsetTop,
             behavior: 'smooth'
           });
-          // Close mobile nav after clicking a link
           hamburger.classList.remove('active');
           nav.classList.remove('active');
         }
