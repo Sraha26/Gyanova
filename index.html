@@ -18,6 +18,7 @@
       --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
     }
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+    html { scroll-behavior: smooth; } /* Added smooth scroll */
     body { background: var(--light); color: var(--dark); overflow-x:hidden; }
     body::before {
       content:""; position:fixed; top:0; left:0; width:100%; height:100%;
@@ -368,6 +369,7 @@
         gap: 2rem;
       }
       .program-card {
+        min-height: 450px; /* Added min-height for consistent box sizes */
         margin: 0 auto;
         max-width: 400px;
       }
@@ -589,24 +591,19 @@ footer {
         <a href="#programs" class="cta-button">Explore Programs</a>
       </div>
     </div>
-    <!-- Lottie hero animation as background -->
     <lottie-player src="https://assets.lottiefiles.com/packages/lf20_jcikwtux.json"
       background="transparent" speed="1" loop autoplay></lottie-player>
-    <!-- Floating shape decorations -->
     <div class="floating-element"></div>
     <div class="floating-element"></div>
     <div class="floating-element"></div>
-    <!-- Animated icon pics -->
     <img src="https://cdn-icons-png.flaticon.com/512/906/906175.png" alt="Atom" class="animated-pic pic1">
     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Student" class="animated-pic pic2">
     <img src="https://cdn-icons-png.flaticon.com/512/3081/3081648.png" alt="Laptop" class="animated-pic pic3">
   </section>
 
-  <!-- Programs with AOS -->
   <section class="section" id="programs">
     <h2 class="section-title" data-aos="fade-up">Our Programs</h2>
     <div class="programs-grid">
-      <!-- Class 5 -->
       <div class="program-card" data-aos="fade-up" data-aos-delay="100">
         <div class="program-header">
           <div class="program-class">Class 5</div>
@@ -639,7 +636,6 @@ footer {
         </div>
       </div>
 
-      <!-- Class 6 -->
       <div class="program-card" data-aos="fade-up" data-aos-delay="150">
         <div class="program-header">
           <div class="program-class">Class 6</div>
@@ -673,7 +669,6 @@ footer {
         </div>
       </div>
 
-      <!-- Class 7 -->
       <div class="program-card" data-aos="fade-up" data-aos-delay="200">
         <div class="program-header">
           <div class="program-class">Class 7</div>
@@ -708,7 +703,6 @@ footer {
         </div>
       </div>
 
-      <!-- Class 8 -->
       <div class="program-card" data-aos="fade-up" data-aos-delay="250">
         <div class="program-header">
           <div class="program-class">Class 8</div>
@@ -743,7 +737,6 @@ footer {
         </div>
       </div>
 
-      <!-- Class 9 -->
       <div class="program-card" data-aos="fade-up" data-aos-delay="300">
         <div class="program-header">
           <div class="program-class">Class 9</div>
@@ -776,8 +769,7 @@ footer {
         </div>
       </div>
 
-      <!-- Class 10 -->
-           <div class="program-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="program-card" data-aos="fade-up" data-aos-delay="300">
         <div class="program-header">
           <div class="program-class">Class 10</div>
           <div class="program-title">Board Preparation Program</div>
@@ -813,8 +805,7 @@ footer {
    
 
 
-  <!-- Class 11 -->
-      <div class="program-card" data-aos="fade-up" data-aos-delay="400">
+  <div class="program-card" data-aos="fade-up" data-aos-delay="400">
         <div class="program-header">
           <div class="program-class">Class 11</div>
           <div class="program-title">Pre-Board Preparation Program</div>
@@ -838,8 +829,7 @@ footer {
    
   
 
-  <!-- Class 12 -->
-      <div class="program-card" data-aos="fade-up" data-aos-delay="450">
+  <div class="program-card" data-aos="fade-up" data-aos-delay="450">
         <div class="program-header">
           <div class="program-class">Class 12</div>
           <div class="program-title">Board Preparation Program</div>
@@ -868,7 +858,6 @@ footer {
  
 
 
-  <!-- Features section -->
   <section class="features" id="features">
     <h2 class="section-title" data-aos="fade-down">Why Us</h2>
     <div class="features-grid">
@@ -896,21 +885,18 @@ footer {
   </section>
 
 
- <!-- Footer -->
-<footer>
+ <footer>
   <div class="footer-container">
-    <!-- About -->
     <div class="footer-about">
       <a href="#" class="footer-logo"><i class="fas fa-graduation-cap logo-icon"></i> Gyanova Academy</a>
       <p>Empowering students with knowledge, skills, and values to succeed in an ever-changing world.</p>
       <div class="social-links">
         <a href="https://www.facebook.com/share/1AoLnMhXxK/" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="tel:+916289475969" class="social-link call"><i class="fas fa-phone"></i></a>
+        <a href="tel:+919433912408" class="social-link call"><i class="fas fa-phone"></i></a>
         <a href="mailto:gyanova07@gmail.com" class="social-link email"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
 
-    <!-- Quick Links -->
     <div class="footer-links">
       <h3>Quick Links</h3>
       <ul>
@@ -920,7 +906,6 @@ footer {
       </ul>
     </div>
 
-    <!-- Contact -->
     <div class="footer-contact">
       <h3>Contact Us</h3>
       <div class="contact-info">
@@ -932,7 +917,6 @@ footer {
     </div>
   </div>
 
-  <!-- Copyright -->
   <div class="copyright">
     <p>&copy; 2020 Gyanova Academy. All rights reserved.</p>
   </div>
@@ -955,11 +939,22 @@ footer {
       nav.classList.toggle('active');
     });
 
-    // Close mobile nav when clicking on a link
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        nav.classList.remove('active');
+    // Smooth scroll for navigation links
+    document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop,
+            behavior: 'smooth'
+          });
+          // Close mobile nav after clicking a link
+          hamburger.classList.remove('active');
+          nav.classList.remove('active');
+        }
       });
     });
   </script>
